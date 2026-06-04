@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function NavbarNotLoggedIn() {
+export function Navbar() {
 	return (
 		<nav
 			className="navbar"
@@ -77,4 +77,4 @@ export function NavbarNotLoggedIn() {
 		</nav>
 	);
 }
-export default NavbarNotLoggedIn;
+export default Navbar;
