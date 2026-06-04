@@ -1,4 +1,4 @@
-import { svrUrl } from "../constants.js";
+import { api_key } from "../constants.js";
 import {
 	Link,
 	useNavigate,
@@ -6,31 +6,17 @@ import {
 	useSearchParams,
 } from "react-router-dom";
 import { useContext, useState, useEffect, use } from "react";
-import Pagination from "../components/Pagination.jsx";
-import TvShowDetail from "./TvshowDetail.jsx";
 import Cards from "../components/Cards.jsx";
 
-export function Details() {
-	const [searchParams, setSearchParams] = useSearchParams();
+export function TvShowDetails() {
 	const [tvshow, setTvshow] = useState(null);
-	const navigate = useNavigate();
 
-	const tvshowId = searchParams.get("tvshowId");
+	const id = useParams("id");
 
-	// const [currentPage, setCurrentPage] = useState(1);
-	// const [itemsPerPage, setItemsPerPage] = useState(
-	// 	localStorage.getItem("itemsPerPage") || 8,
-	// );
-
-	// const totalPages = Math.ceil(tvshowsAffiche.length / itemsPerPage);
-	// const currentItems = tvshowsAffiche.slice(
-	// 	(currentPage - 1) * itemsPerPage,
-	// 	currentPage * itemsPerPage,
-	// );
 
 	useEffect(() => {
 		async function getTvshow() {
-			const rep = await fetch(svrUrl + "/tvshow?tvshowId=" + tvshowId, {
+			const rep = await fetch(`/tmdb/tv/${id}?api_key=${api_key}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -97,4 +83,4 @@ export function Details() {
 	);
 }
 
-export default Details;
+export default TvShowDetails;
