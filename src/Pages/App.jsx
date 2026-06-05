@@ -47,7 +47,7 @@ function App() {
 	return (
 		<>
 			<div className="container">
-				<div>
+				{/* <div>
 					<div className="title is-1" style={{ marginTop: "2rem", marginBottom: "2rem" }}>
 						Welcome to Plex Streaming
 					</div>
@@ -58,25 +58,25 @@ function App() {
 						for everyone. Start streaming your favorites today and experience the magic
 						of entertainment like never before.
 					</p>
-				</div>
+				</div> */}
 
 				<div>
 					<div className="title is-3" style={{ marginTop: "2rem" }}>
 						Trending Movies
 					</div>
-					<Showcase key={trending?.page} trending={trending} />
+					<Showcase key={trending?.page} trending={trending} type="movies" />
 				</div>
 				<div>
 					<div className="title is-3" style={{ marginTop: "2rem" }}>
 						Now Playing
 					</div>
-					<Showcase key={nowPlaying?.page} trending={nowPlaying} />
+					<Showcase key={nowPlaying?.page} trending={nowPlaying} type="movies" />
 				</div>
 				<div>
 					<div className="title is-3" style={{ marginTop: "2rem" }}>
 						Top Rated
 					</div>
-					<Showcase key={topRated?.page} trending={topRated} />
+					<Showcase key={topRated?.page} trending={topRated} type="movies" />
 				</div>
 			</div>
 		</>

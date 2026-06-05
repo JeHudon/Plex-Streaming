@@ -1,6 +1,7 @@
 import { svrUrl } from "./constants.js";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import App from "./Pages/App.jsx";
+import Tv from "./Pages/Tv.jsx";
 import { Erreur404 } from "./Pages/Erreur404.jsx";
 import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar.jsx";
@@ -16,6 +17,7 @@ export function Routeur() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<App />} />
+				<Route path="/tv" element={<Tv />} />
 				<Route path="/movies/:id" element={<MovieDetails />} />
 				<Route path="/tv/:id" element={<TvShowDetails />} />
 				{/* <Route path="/saison" element={<Saison />} /> */}

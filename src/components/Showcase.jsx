@@ -12,13 +12,13 @@ export function Showcase(props) {
 							flexWrap: "nowrap",
 						}}
 				>
-					{props.trending?.results?.map((movie) => (
+					{props.trending?.results?.map((r) => (
 						<ShowcaseCards
-							key={movie.id}
-							size="3"
-							img={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-							to={`/movies/${movie.id}-${movie.title.replace(/\s+/g, "-").toLowerCase()}`}
-							vote_average={movie.vote_average}
+							key={r.id}
+							size="2"
+							img={`https://image.tmdb.org/t/p/w500/${r.poster_path}`}
+							to={`/${props.type}/${r.id}-${(props.type === "movies" ? r.title : r.name).replace(/\s+/g, "-").toLowerCase()}`}
+							vote_average={r.vote_average}
 						/>
 					))}
 				</div>

@@ -23,6 +23,19 @@ export function Navbar() {
 					>
 						Home
 					</Link>
+					<Link
+						className="navbar-item"
+						style={{
+							margin: "20px",
+							padding: "10px",
+							fontSize: "1.5em",
+							marginLeft: "100px",
+							color: "white",
+						}}
+						to="/tv"
+					>
+						TV
+					</Link>
 				</div>
 
 				<div className="navbar-end">
@@ -56,7 +69,7 @@ export function Navbar() {
 							>
 								Signup
 							</Link>
-														<Link
+							<Link
 								className="navbar-item"
 								style={{
 									margin: "20px",

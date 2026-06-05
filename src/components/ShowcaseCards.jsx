@@ -4,7 +4,7 @@ import { RatingBadge } from "./RatingBadge.jsx";
 export function ShowcaseCards(props) {
 	return (
 		<div
-			className={"column is-" + props.size}
+			className={props.size ? "column is-" + props.size : ""}
 			style={{
 				textAlign: "center",
 				flexShrink: 0,

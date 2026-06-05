@@ -19,7 +19,7 @@ export function RatingBadge({ score }) {
         transform="rotate(-90 40 40)"
       />
       <text x="40" y="46" textAnchor="middle" fontSize="18" fontWeight="700" fill="white" fontFamily="sans-serif">
-        {score.toFixed(1)}
+        {score?.toFixed(1)}
       </text>
     </svg>
   );
