@@ -1,4 +1,4 @@
-import { api_key } from "../constants.js";
+import { api_key, token } from "../constants.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import Showcase from "../components/Showcase.jsx";
@@ -10,7 +10,13 @@ function Tv() {
 
     useEffect(() => {
         async function getTrending() {
-            const rep = await fetch(`tmdb/trending/tv/day?api_key=${api_key}`);
+            const rep = await fetch(`tmdb/trending/tv/day`, {
+                method: "GET",
+                headers: {
+                    accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             if (rep.ok) {
                 const data = await rep.json();
                 setTrending(data);
@@ -22,7 +28,13 @@ function Tv() {
 
     useEffect(() => {
         async function getNowPlaying() {
-            const rep = await fetch(`tmdb/tv/on_the_air?api_key=${api_key}`);
+            const rep = await fetch(`tmdb/tv/on_the_air`, {
+                method: "GET",
+                headers: {
+                    accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             if (rep.ok) {
                 const data = await rep.json();
                 setNowPlaying(data);
@@ -34,7 +46,13 @@ function Tv() {
 
     useEffect(() => {
         async function getTopRated() {
-            const rep = await fetch(`tmdb/tv/top_rated?api_key=${api_key}`);
+            const rep = await fetch(`tmdb/tv/top_rated`, {
+                method: "GET",
+                headers: {
+                    accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             if (rep.ok) {
                 const data = await rep.json();
                 setTopRated(data);
