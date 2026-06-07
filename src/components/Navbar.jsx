@@ -21,7 +21,7 @@ export function Navbar() {
 						}}
 						to="/"
 					>
-						Home
+						Movies
 					</Link>
 					<Link
 						className="navbar-item"
@@ -68,20 +68,6 @@ export function Navbar() {
 								to="/signup"
 							>
 								Signup
-							</Link>
-							<Link
-								className="navbar-item"
-								style={{
-									margin: "20px",
-									padding: "10px",
-									fontSize: "1.5em",
-									color: "white",
-									marginRight: "100px",
-								}}
-								id="about"
-								to="/about"
-							>
-								About
 							</Link>
 						</div>
 					</div>
