@@ -12,7 +12,7 @@ export function ShowcaseCards(props) {
 			}}
 		>
 			<Link {...(props.to ? { to: props.to } : {})}>
-				<div className="card" style={{ position: "relative" }}>
+				<div className="card is-shadowless" style={{ position: "relative" }}>
 					<div className="card-img">
 						<div style={{ position: "absolute", top: "8px", left: "8px", zIndex: 1 }}>
 							<RatingBadge score={props.vote_average} />

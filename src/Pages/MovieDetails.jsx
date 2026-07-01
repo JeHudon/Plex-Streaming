@@ -8,6 +8,9 @@ import WatchMovies from "../components/WatchMovies.jsx";
 export function MovieDetails() {
 	const [movie, setMovie] = useState(null);
 	const [credits, setCredits] = useState(null);
+	const [videos, setVideos] = useState(null);
+
+	const trailer = videos?.results.find((v) => v.site === "YouTube" && v.type === "Trailer");
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,14 +21,19 @@ export function MovieDetails() {
 
 	useEffect(() => {
 		async function getData() {
-			const [movieRes, creditsRes] = await Promise.all([
+			const [movieRes, creditsRes, videosRes] = await Promise.all([
 				fetch(`/tmdb/movie/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
 				fetch(`/tmdb/movie/${id}/credits`, {
 					headers: { Authorization: `Bearer ${token}` },
 				}),
+				fetch(`/tmdb/movie/${id}/videos`, {
+					headers: { Authorization: `Bearer ${token}` },
+				}),
 			]);
+			// console.log(await videosRes.json());
 			setMovie(await movieRes.json());
 			setCredits(await creditsRes.json());
+			setVideos(await videosRes.json());
 		}
 		getData();
 	}, [id]);
@@ -54,18 +62,22 @@ export function MovieDetails() {
 									className="is-flex is-align-items-center mb-3"
 									style={{ gap: "2rem" }}
 								>
-									{movie?.production_companies.map((c) => (
-										<img
-											key={c.id}
-											src={`https://image.tmdb.org/t/p/w92/${c.logo_path}`}
-											alt={c.name}
-											style={{
-												filter: c.logo_path.endsWith(".jpg")
-													? "none"
-													: "brightness(0) invert(1)",
-											}}
-										/>
-									))}
+									{movie?.production_companies.map((c) =>
+										c.logo_path ? (
+											<img
+												key={c.id}
+												src={`https://image.tmdb.org/t/p/w92/${c.logo_path}`}
+												alt={c.name}
+												style={{
+													filter: c.logo_path?.endsWith(".jpg")
+														? "none"
+														: "brightness(0) invert(1)",
+												}}
+											/>
+										) : (
+											<p className="subtitle is-6">{c.name}</p>
+										),
+									)}
 								</div>
 
 								<p className="mb-4">
@@ -123,7 +135,32 @@ export function MovieDetails() {
 									</button>
 								</div>
 
-								<p>{movie?.overview}</p>
+								<p className="subtitle is-6">{movie?.overview}</p>
+
+								{trailer && (
+									<iframe
+										src={`https://www.youtube.com/embed/${trailer.key}`}
+										style={{
+											width: "100%",
+											aspectRatio: "16/9",
+											border: "none",
+										}}
+										allowFullScreen
+									/>
+								)}
+							</div>
+							<div className="column is-narrow" style={{ width: "300px" }}>
+								<h2 className="title is-4 mb-3">Cast & Crew</h2>
+								<div style={{ maxHeight: "600px", overflowY: "auto" }}>
+									{credits?.cast.map((c) => (
+										<CastCell
+											key={c.id}
+											name={c.name}
+											profile_path={c.profile_path}
+											role={c.character}
+										/>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>
